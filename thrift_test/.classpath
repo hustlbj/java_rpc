@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/httpclient-4.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/httpcore-4.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/libthrift-0.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/pixel/gen-java/com/eviac/blog/samples/thrift/server/slf4j-log4j12-1.5.8.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

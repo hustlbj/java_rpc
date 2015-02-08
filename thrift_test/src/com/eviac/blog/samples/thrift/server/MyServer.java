@@ -1,0 +1,27 @@
+package com.eviac.blog.samples.thrift.server;
+
+import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.transport.TServerTransport;
+import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TServer.Args;
+import org.apache.thrift.server.TSimpleServer;
+import com.eviac.blog.samples.thrift.server.AdditionService;
+
+public class MyServer {
+
+	public static void StartSimpleServer(AdditionService.Processor<AdditionServiceHandler> processor) {
+		try {
+			TServerTransport serverTransport = new TServerSocket(9090);
+			TServer server = new TSimpleServer(
+				new Args(serverTransport).processor(processor));
+			System.out.println("Starting the simple server...");
+			server.serve();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		StartSimpleServer(new AdditionService.Processor<AdditionServiceHandler>(new AdditionServiceHandler()));
+	}
+}
