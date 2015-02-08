@@ -20,7 +20,7 @@ public class AdditionClient {
 			TProtocol protocol = new TBinaryProtocol(transport);
 			AdditionService.Client client = new AdditionService.Client(protocol);
 
-			System.out.println(client.add(100, 200));
+			System.out.println(client.add(200, 200));
 			transport.close();
 		} catch (TTransportException e) {
 			e.printStackTrace();
