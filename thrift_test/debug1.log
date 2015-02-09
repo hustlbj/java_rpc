@@ -1,0 +1,7 @@
+2015-02-09 17:15:56 470-->[main]--[DEBUG]--[MyServer]--entry
+2015-02-09 17:18:04 931-->[main]--[DEBUG]--[MyServer]--entry
+2015-02-09 17:19:08,644 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
+2015-02-09 17:20:05,478 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
+2015-02-09 17:48:38,939 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
+2015-02-09 17:48:52,385 DEBUG thrift.TServiceClient (TServiceClient.java:sendBase(70)) - [Trace, Call, 
+2015-02-09 17:48:52,399 DEBUG thrift.TServiceClient (TServiceClient.java:receiveBase(85)) - [Trace, Return, 
