@@ -8,3 +8,10 @@
 2015-07-04 23:17:15,360 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:writeMessageBegin(108)) - Call Send: add, ID=1
 2015-07-04 23:17:15,360 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:readMessageBegin(246)) - Call Receive: add, ID=1
 2015-07-04 23:17:15,360 DEBUG thrift.TServiceClient (TServiceClient.java:receiveBase(85)) - [Trace, Return, 
+2015-07-07 09:31:49,730 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
+2015-07-07 09:31:59,548 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:writeMessageBegin(108)) - Call Send: add, ID=1
+2015-07-07 09:31:59,553 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:readMessageBegin(246)) - Call Receive: add, ID=1
+2015-07-07 09:31:59,554 DEBUG thrift.TServiceClient (TServiceClient.java:sendBase(70)) - [Trace, Call, 
+2015-07-07 09:31:59,569 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:writeMessageBegin(108)) - Call Send: add, ID=1
+2015-07-07 09:31:59,570 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:readMessageBegin(246)) - Call Receive: add, ID=1
+2015-07-07 09:31:59,572 DEBUG thrift.TServiceClient (TServiceClient.java:receiveBase(85)) - [Trace, Return, 
