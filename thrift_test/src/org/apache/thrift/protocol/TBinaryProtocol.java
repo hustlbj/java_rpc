@@ -23,7 +23,10 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 
 import org.apache.thrift.TException;
+import org.apache.thrift.TServiceClient;
 import org.apache.thrift.transport.TTransport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Binary protocol implementation for thrift.
@@ -35,6 +38,7 @@ public class TBinaryProtocol extends TProtocol {
 
   protected static final int VERSION_MASK = 0xffff0000;
   protected static final int VERSION_1 = 0x80010000;
+  private static final Logger LOGGER = LoggerFactory.getLogger(TBinaryProtocol.class.getName());
 
   /**
    * The maximum number of bytes to read from the transport for
@@ -101,6 +105,7 @@ public class TBinaryProtocol extends TProtocol {
   }
 
   public void writeMessageBegin(TMessage message) throws TException {
+	LOGGER.info("Call Send: " + message.name + ", ID=" + message.seqid);
     if (strictWrite_) {
       int version = VERSION_1 | message.type;
       writeI32(version);
@@ -217,18 +222,29 @@ public class TBinaryProtocol extends TProtocol {
 
   public TMessage readMessageBegin() throws TException {
     int size = readI32();
+    String methodName;
+    byte type;
+    int seqID;
     if (size < 0) {
       int version = size & VERSION_MASK;
       if (version != VERSION_1) {
         throw new TProtocolException(TProtocolException.BAD_VERSION, "Bad version in readMessageBegin");
       }
-      return new TMessage(readString(), (byte)(size & 0x000000ff), readI32());
+      methodName = readString();
+      type = (byte)(size & 0x000000ff);
+      seqID = readI32();
+      //return new TMessage(readString(), (byte)(size & 0x000000ff), readI32());
     } else {
       if (strictRead_) {
         throw new TProtocolException(TProtocolException.BAD_VERSION, "Missing version in readMessageBegin, old client?");
       }
-      return new TMessage(readStringBody(size), readByte(), readI32());
+      methodName = readStringBody(size);
+      type = readByte();
+      seqID = readI32();
+      //return new TMessage(readStringBody(size), readByte(), readI32());
     }
+    LOGGER.info("Call Receive: " + methodName + ", ID=" + seqID);
+    return new TMessage(methodName, type, seqID);
   }
 
   public void readMessageEnd() {}

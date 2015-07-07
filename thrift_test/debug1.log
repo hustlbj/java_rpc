@@ -1,7 +1,10 @@
-2015-02-09 17:15:56 470-->[main]--[DEBUG]--[MyServer]--entry
-2015-02-09 17:18:04 931-->[main]--[DEBUG]--[MyServer]--entry
-2015-02-09 17:19:08,644 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
-2015-02-09 17:20:05,478 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
-2015-02-09 17:48:38,939 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
-2015-02-09 17:48:52,385 DEBUG thrift.TServiceClient (TServiceClient.java:sendBase(70)) - [Trace, Call, 
-2015-02-09 17:48:52,399 DEBUG thrift.TServiceClient (TServiceClient.java:receiveBase(85)) - [Trace, Return, 
+2015-07-04 20:52:52,127 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
+2015-07-04 20:53:16,885 DEBUG thrift.TServiceClient (TServiceClient.java:sendBase(70)) - [Trace, Call, 
+2015-07-04 20:53:16,934 DEBUG thrift.TServiceClient (TServiceClient.java:receiveBase(85)) - [Trace, Return, 
+2015-07-04 23:17:02,801 DEBUG server.MyServer (MyServer.java:StartSimpleServer(20)) - entry
+2015-07-04 23:17:15,301 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:writeMessageBegin(108)) - Call Send: add, ID=1
+2015-07-04 23:17:15,317 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:readMessageBegin(246)) - Call Receive: add, ID=1
+2015-07-04 23:17:15,329 DEBUG thrift.TServiceClient (TServiceClient.java:sendBase(70)) - [Trace, Call, 
+2015-07-04 23:17:15,360 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:writeMessageBegin(108)) - Call Send: add, ID=1
+2015-07-04 23:17:15,360 INFO  protocol.TBinaryProtocol (TBinaryProtocol.java:readMessageBegin(246)) - Call Receive: add, ID=1
+2015-07-04 23:17:15,360 DEBUG thrift.TServiceClient (TServiceClient.java:receiveBase(85)) - [Trace, Return, 
