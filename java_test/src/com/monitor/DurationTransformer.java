@@ -31,12 +31,16 @@ public class DurationTransformer implements ClassFileTransformer {
 		if (className.startsWith("com/test")) {
 			ClassPool classPool = ClassPool.getDefault();
 			try {
+				//Compile-time class，允许你查找方法、注释、域、构造器，和反射机制不同的地方是CtClass还允许你修改字节码
 				CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
 				//解冻之后才能修改，否则会报出class is frozen
 				ctClass.defrost();
 				CtMethod[] methods = ctClass.getDeclaredMethods();
 				for (CtMethod method : methods) {
 					System.out.println("method: " + method.getName());
+					// addParameter()可以给方法签名添加新的参数
+					// addLocalVariable()则是给方法添加局部变量
+					// setBody()可以直接设置方法的整个方法体
 					method.addLocalVariable("startTime", CtClass.longType);
 					method.insertBefore("startTime = System.nanoTime(); ");
 					method.insertAfter("System.out.println(\"Execution Duration(nano secs): \" + (System.nanoTime() - startTime));");
