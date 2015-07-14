@@ -82,6 +82,14 @@ class Employee extends Person
 				&& salary == other.salary
 				&& hireDay.equals(other.hireDay);
 	}
+	public int hashCode() 
+	{
+		return 7 * super.getName().hashCode() + 11 * new Double(salary).hashCode() + 13 * hireDay.hashCode();
+	}
+	public String toString()
+	{
+		return getClass().getName() + "[name=" + super.getName() + ",salary=" + salary + ",hireDay=" + hireDay + "]";
+	}
 	
 	//子类只能通过getter访问私有域
 	private double salary;
@@ -116,6 +124,14 @@ class Manager extends Employee
 		if (!super.equals(otherObject)) return false;
 		Manager other = (Manager)otherObject;
 		return bonus == other.bonus;
+	}
+	public int hashCode()
+	{
+		return super.hashCode() + 17 * new Double(bonus).hashCode();
+	}
+	public String toString()
+	{
+		return super.toString() + "[bonus=" + bonus + "]";  
 	}
 	private double bonus;
 }

@@ -71,6 +71,13 @@ public class Trace implements Serializable{
 		if (actions.size() == 0)
 		{
 			headId = id;
+			traceKey = TraceManager.getInstance().startTrace(this);
+		}
+		actions.add(new MethodAction(action, id));
+		if (action == MethodAction.Action.END && id.equals(headId))
+		{
+			TraceManager.getInstance().endTrace(traceKey);
 		}
 	}
+	
 }
