@@ -1,15 +1,17 @@
 package com.test;
 
 public class BasicJava {
+
 	public static void main(String[] args) {
 		System.out.println("This is a Java test program..");
 		sayHello();
-		sayHello2("sayHello 1000");
 	}
+	
 	public static void sayHello() {
 		try{
 			Thread.sleep(2000);
 			System.out.println("sayhello 2000");
+			sayHello2("sayHello2....");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

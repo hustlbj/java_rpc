@@ -62,7 +62,7 @@ public class Trace implements Serializable{
 		
 	}
 	
-	public void AddAction(MethodAction.Action action, String id)
+	public void addAction(MethodAction.Action action, String id)
 	{
 		if (logger.isTraceEnabled())
 		{

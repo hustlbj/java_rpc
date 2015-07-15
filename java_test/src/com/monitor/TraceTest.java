@@ -8,7 +8,7 @@ public class TraceTest {
 
     public TraceTest()
     {
-        Tracer.getInstance().get().AddAction( Action.START, "TraceTest.Constructor" );
+        Tracer.getInstance().get().addAction( Action.START, "TraceTest.Constructor" );
         try
         {
             Thread.sleep( 20 );
@@ -16,12 +16,12 @@ public class TraceTest {
         catch( Exception e )
         {
         }
-        Tracer.getInstance().get().AddAction( Action.END, "TraceTest.Constructor" );
+        Tracer.getInstance().get().addAction( Action.END, "TraceTest.Constructor" );
     }
 
     public void method1()
     {
-        Tracer.getInstance().get().AddAction( Action.START, "TraceTest.method1" );
+        Tracer.getInstance().get().addAction( Action.START, "TraceTest.method1" );
         try
         {
             Thread.sleep( 100 );
@@ -30,12 +30,12 @@ public class TraceTest {
         {
         }
         method11();
-        Tracer.getInstance().get().AddAction( Action.END, "TraceTest.method1" );
+        Tracer.getInstance().get().addAction( Action.END, "TraceTest.method1" );
     }
 
     public void method11()
     {
-        Tracer.getInstance().get().AddAction( Action.START, "TraceTest.method11" );
+        Tracer.getInstance().get().addAction( Action.START, "TraceTest.method11" );
         try
         {
             Thread.sleep( 1000 );
@@ -44,12 +44,12 @@ public class TraceTest {
         {
         }
         ic.doSomething();
-        Tracer.getInstance().get().AddAction( Action.END, "TraceTest.method11" );
+        Tracer.getInstance().get().addAction( Action.END, "TraceTest.method11" );
     }
 
     public void method2()
     {
-        Tracer.getInstance().get().AddAction( Action.START, "TraceTest.method2" );
+        Tracer.getInstance().get().addAction( Action.START, "TraceTest.method2" );
         try
         {
             Thread.sleep( 50 );
@@ -57,9 +57,9 @@ public class TraceTest {
         catch( Exception e )
         {
         }
-        Tracer.getInstance().get().AddAction( Action.END, "TraceTest.method2" );
+        Tracer.getInstance().get().addAction( Action.END, "TraceTest.method2" );
     }
-
+/*
     public static void main( String[] args )
     {
         Tracer.getInstance().get().AddAction( Action.START, "TraceTest.main()" );
@@ -79,12 +79,12 @@ public class TraceTest {
         thread2.start();
         Tracer.getInstance().get().AddAction( Action.END, "TraceTest.main()" );
     }
-
+*/
     class InnerClass
     {
         public InnerClass()
         {
-            Tracer.getInstance().get().AddAction( Action.START, "InnerClass.Constructor" );
+            Tracer.getInstance().get().addAction( Action.START, "InnerClass.Constructor" );
             try
             {
                 Thread.sleep( 50 );
@@ -92,12 +92,12 @@ public class TraceTest {
             catch( Exception e )
             {
             }
-            Tracer.getInstance().get().AddAction( Action.END, "InnerClass.Constructor" );
+            Tracer.getInstance().get().addAction( Action.END, "InnerClass.Constructor" );
         }
 
         public void doSomething()
         {
-            Tracer.getInstance().get().AddAction( Action.START, "InnerClass.doSomething" );
+            Tracer.getInstance().get().addAction( Action.START, "InnerClass.doSomething" );
             try
             {
                 Thread.sleep( 50 );
@@ -105,7 +105,7 @@ public class TraceTest {
             catch( Exception e )
             {
             }
-            Tracer.getInstance().get().AddAction( Action.END, "InnerClass.doSomething" );
+            Tracer.getInstance().get().addAction( Action.END, "InnerClass.doSomething" );
         }
     }
 }
@@ -124,11 +124,11 @@ class MyThread extends Thread
     @Override
     public void run()
     {
-        Tracer.getInstance().get().AddAction( Action.START, "MyThread.run()" );
+        Tracer.getInstance().get().addAction( Action.START, "MyThread.run()" );
         TraceTest.method1();
         TraceTest.method2();
         TraceTest.method1();
-        Tracer.getInstance().get().AddAction( Action.END, "MyThread.run()" );
+        Tracer.getInstance().get().addAction( Action.END, "MyThread.run()" );
         StringBuilder sb = new StringBuilder();
         sb.append( "Thread " ).append( id ).append( " Methods: \n");
         for( MethodAction ma : Tracer.getInstance().get().getActions() )
