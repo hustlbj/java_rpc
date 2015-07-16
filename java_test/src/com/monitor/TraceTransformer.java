@@ -23,14 +23,14 @@ public class TraceTransformer implements ClassFileTransformer {
 	
 	private static final Logger logger = Logger.getLogger(TraceTransformer.class);
 	
-	protected Instrumentation instrumentation = null;
+	//protected Instrumentation instrumentation = null;
 	protected ClassPool classPool;
 	protected Set<String> instrumentedClassesSet = new HashSet<String>();
 	protected List<String> classesToSkipList = new ArrayList<String>();
 	
 	public TraceTransformer(Instrumentation instrumentation)
 	{
-		this.instrumentation = instrumentation;
+		//this.instrumentation = instrumentation;
 		classPool = ClassPool.getDefault();
 		classesToSkipList.add("javax.");
 		classesToSkipList.add("java.");
@@ -38,15 +38,16 @@ public class TraceTransformer implements ClassFileTransformer {
 		classesToSkipList.add("com.sun.");
 		classesToSkipList.add("org.apache.");
 		classesToSkipList.add("org.jdom");
+		classesToSkipList.add("com.monitor.");
 		
-		this.instrumentation.addTransformer(this);
+		//this.instrumentation.addTransformer(this);
 		TraceManager.getInstance().startTraceManager();
 	}
 	@Override
 	public byte[] transform(ClassLoader loader, String className,
 			Class<?> classBeingRedefined, ProtectionDomain protectionDomain,
 			byte[] classfileBuffer) throws IllegalClassFormatException {
-		// TODO Auto-generated method stub
+		//Convert com/test to com.test
 		String dotClassName = className.replace('/', '.');
 		
 		if (logger.isInfoEnabled())
@@ -60,6 +61,7 @@ public class TraceTransformer implements ClassFileTransformer {
 		}
 		instrumentedClassesSet.add(className);
 		
+		// 指定要忽略的一些包类不进行instrument，直接返回原类
 		// Skip in the list of class prefixes to skip
 		for(String classToSkip : classesToSkipList)
 		{
@@ -69,6 +71,7 @@ public class TraceTransformer implements ClassFileTransformer {
 			}
 		}
 		try {
+			//利用javassist创建一个CtClass对象
 			//Create a Javassist CtClass from the byte code
 			classPool.insertClassPath(new ByteArrayClassPath(className, classfileBuffer));
 			CtClass cc= classPool.get(dotClassName);
@@ -77,7 +80,8 @@ public class TraceTransformer implements ClassFileTransformer {
 			if (!cc.isFrozen())
 			{
 				// We'll add new methods after we modify the existing methods
-				List<CtMethod> newMetohdsCtMethods = new ArrayList<CtMethod>();
+				//List<CtMethod> newMetohdsCtMethods = new ArrayList<CtMethod>();
+				
 				
 				// Instrument the methods
 				CtMethod[] methods = cc.getMethods();
@@ -86,7 +90,7 @@ public class TraceTransformer implements ClassFileTransformer {
 					// Only instrument methods in this class ,not in the super class 
 					if (methods[k].getLongName().startsWith(dotClassName))
 					{
-						String methodNameString = methods[k].getName();
+						//String methodNameString = methods[k].getName();
 						String longMethodNameString = methods[k].getLongName();
 						//methods[k].setName(methodNameString + "$impl");
 						

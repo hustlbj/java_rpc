@@ -25,7 +25,7 @@ public class TraceWriter {
 	 */
 	public static void write(Map<String, Trace> traces, OutputStream os)
 	{
-		Element root = new Element("trace=file");
+		Element root = new Element("trace-file");
 		for (String key: traces.keySet())
 		{
 			// Load the trace
