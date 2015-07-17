@@ -13,9 +13,14 @@ public class ManagerTest {
 		staff[0] = boss;
 		staff[1] = new Employee("Harry", 5000, 1989, 10, 1);
 		staff[2] = new Employee("Tom", 4000, 1990, 3, 5);
+		
+		//Employee实现了Comparable接口，所以Employee对象数组可以使用Arrays.sort()
+		Arrays.sort(staff);
+		
 		//多态引用，动态绑定
-		for (Employee e : staff)
-			System.out.println("name=" + e.getName() + ", salary=" + e.getSalary());
+				for (Employee e : staff)
+					System.out.println("name=" + e.getName() + ", salary=" + e.getSalary());
+				
 	}
 }
 
@@ -43,7 +48,7 @@ abstract class Person
  * @author BJ
  *
  */
-class Employee extends Person
+class Employee extends Person implements Comparable<Employee>
 {
 	//没有隐式的Persion()构造器，必须显式调用 Person的其他构造器
 	public Employee(String n, double s, int year, int month, int day)
@@ -99,6 +104,15 @@ class Employee extends Person
 	public String getDescription() {
 		// TODO Auto-generated method stub
 		return String.format("an employee with a salary of $%.2f", salary);
+	}
+
+	//实现了Comparable接口，必须实现compareTo方法
+	@Override
+	public int compareTo(Employee other) {
+		// TODO Auto-generated method stub
+		if (salary < other.salary) return -1;
+		if (salary > other.salary) return 1;
+		return 0;
 	}
 }
 
