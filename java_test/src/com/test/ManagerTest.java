@@ -14,18 +14,30 @@ public class ManagerTest {
 		staff[1] = new Employee("Harry", 5000, 1989, 10, 1);
 		staff[2] = new Employee("Tom", 4000, 1990, 3, 5);
 		
-		//EmployeeÊµÏÖÁËComparable½Ó¿Ú£¬ËùÒÔEmployee¶ÔÏóÊı×é¿ÉÒÔÊ¹ÓÃArrays.sort()
+		//EmployeeÊµï¿½ï¿½ï¿½ï¿½Comparableï¿½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Employeeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Arrays.sort()
 		Arrays.sort(staff);
 		
-		//¶àÌ¬ÒıÓÃ£¬¶¯Ì¬°ó¶¨
-				for (Employee e : staff)
-					System.out.println("name=" + e.getName() + ", salary=" + e.getSalary());
-				
+		Employee clonedEmployee = null;
+		try {
+			clonedEmployee = staff[1].clone();
+			//Stringå€¼ä¸å¯å˜ï¼Œä¿®æ”¹åä¼šåˆ›å»ºæ–°çš„Stringå¯¹è±¡ï¼Œä¸å†å¼•ç”¨åŸæ¥çš„ï¼Œæµ…æ‹·è´ä¸ä¼šå½±å“Stringå­å¯¹è±¡
+			clonedEmployee.setName("cloned");
+			clonedEmployee.raiseSalary(10);
+			
+		} catch (CloneNotSupportedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//å¤šæ€ç»‘å®š
+		for (Employee e : staff)
+			System.out.println("name=" + e.getName() + ", salary=" + e.getSalary());
+		if (clonedEmployee != null)
+			System.out.println("name=" + clonedEmployee.getName() + ", salary=" + clonedEmployee.getSalary());		
 	}
 }
 
 /**
- * °üº¬abstract·½·¨µÄÀà±ØĞëÊÇ³éÏóÀà
+ * ï¿½ï¿½abstractï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author BJ
  *
  */
@@ -40,17 +52,22 @@ abstract class Person
 	{
 		return name;
 	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 	private String name;
+
 }
 
 /**
- * ±ØĞëÊµÏÖ³éÏó¸¸ÀàµÄ³éÏó·½·¨
+ * ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ó·½·ï¿½
  * @author BJ
  *
  */
-class Employee extends Person implements Comparable<Employee>
+class Employee extends Person implements Comparable<Employee>, Cloneable
 {
-	//Ã»ÓĞÒşÊ½µÄPersion()¹¹ÔìÆ÷£¬±ØĞëÏÔÊ½µ÷ÓÃ PersonµÄÆäËû¹¹ÔìÆ÷
+	//Ã»ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Persion()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ Personï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Employee(String n, double s, int year, int month, int day)
 	{
 		super(n);
@@ -74,15 +91,15 @@ class Employee extends Person implements Comparable<Employee>
 	}
 	public boolean equals(Object otherObject)
 	{
-		//ÏÈ¼ì²éÒıÓÃÊÇ·ñÏàµÈ
+		//ï¿½È¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 		if (this == otherObject) return true;
-		//Æä´Î¼ì²éotherObjectÊÇ²»ÊÇ null
+		//ï¿½ï¿½Î¼ï¿½ï¿½otherObjectï¿½Ç²ï¿½ï¿½ï¿½ null
 		if (otherObject == null) return false;
-		//¼ì²éÀàĞÍÊÇ·ñÏàÍ¬
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Í¬
 		if (getClass() != otherObject.getClass())
 			return false;
 		Employee other = (Employee)otherObject;
-		//ÕâÀï salaryÊÇ¸¡µãÊı¡£¡£¡£¡£¡£
+		//ï¿½ï¿½ï¿½ï¿½ salaryï¿½Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		return getName().equals(other.getName())
 				&& salary == other.salary
 				&& hireDay.equals(other.hireDay);
@@ -96,7 +113,7 @@ class Employee extends Person implements Comparable<Employee>
 		return getClass().getName() + "[name=" + super.getName() + ",salary=" + salary + ",hireDay=" + hireDay + "]";
 	}
 	
-	//×ÓÀàÖ»ÄÜÍ¨¹ıgetter·ÃÎÊË½ÓĞÓò
+	//ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Í¨ï¿½ï¿½getterï¿½ï¿½ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½
 	private double salary;
 	private Date hireDay;
 	
@@ -106,7 +123,7 @@ class Employee extends Person implements Comparable<Employee>
 		return String.format("an employee with a salary of $%.2f", salary);
 	}
 
-	//ÊµÏÖÁËComparable½Ó¿Ú£¬±ØĞëÊµÏÖcompareTo·½·¨
+	//Êµï¿½ï¿½ï¿½ï¿½Comparableï¿½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½compareToï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int compareTo(Employee other) {
 		// TODO Auto-generated method stub
@@ -114,6 +131,17 @@ class Employee extends Person implements Comparable<Employee>
 		if (salary > other.salary) return 1;
 		return 0;
 	}
+
+	@Override
+	protected Employee clone() throws CloneNotSupportedException {
+		//Call Object.clone()
+		Employee cloned = (Employee)super.clone();
+		//clone mutable fields, deeply clone
+		cloned.hireDay = (Date)hireDay.clone();
+		return cloned;
+	}
+	
+	
 }
 
 class Manager extends Employee
@@ -123,7 +151,7 @@ class Manager extends Employee
 		super(n, s, year, month, day);
 		bonus = 0;
 	}
-	//¸²¸Ç¸¸Àà·½·¨
+	//ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½à·½ï¿½ï¿½
 	public double getSalary()
 	{
 		double baseSalary = super.getSalary();
