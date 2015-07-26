@@ -43,6 +43,7 @@ public class ManagerTest {
  */
 abstract class Person
 {
+	private String name;
 	public Person(String n)
 	{
 		name = n;
@@ -56,8 +57,6 @@ abstract class Person
 	{
 		this.name = name;
 	}
-	private String name;
-
 }
 
 /**
@@ -74,6 +73,10 @@ class Employee extends Person implements Comparable<Employee>, Cloneable
 		salary = s;
 		GregorianCalendar calendar = new GregorianCalendar(year, month - 1, day);
 		hireDay = calendar.getTime();
+	}
+	public Employee(String n)
+	{
+		super(n);
 	}
 	
 	public double getSalary()
