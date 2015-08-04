@@ -97,12 +97,12 @@ class Sorter implements Runnable
 	}
 	
 	/**
-	 * 开始运行
+	 * 开始运行并连续运行
 	 */
 	public void setRun()
 	{
 		run = true;
-		//释放一个许可，让另一个线程的acquire()方法返回
+		//释放一个许可
 		gate.release();
 	}
 	/**
@@ -127,7 +127,7 @@ class Sorter implements Runnable
 				component.setValues(values, arg0, arg1);
 				try
 				{
-					//每比较一次就稍微暂停一下
+					//如果run是true，表示是一直运行，不需要暂停，所以不用信号量acquire
 					if (run) 
 						Thread.sleep(DELAY);
 					else
