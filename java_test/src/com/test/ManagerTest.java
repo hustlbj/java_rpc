@@ -1,5 +1,7 @@
 package com.test;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class ManagerTest {
@@ -43,7 +45,11 @@ public class ManagerTest {
  */
 abstract class Person
 {
-	private String name;
+	protected String name;
+	public Person()
+	{
+		
+	}
 	public Person(String n)
 	{
 		name = n;
@@ -66,6 +72,10 @@ abstract class Person
  */
 class Employee extends Person implements Comparable<Employee>, Cloneable
 {
+	public Employee()
+	{
+		
+	}
 	//û����ʽ��Persion()��������������ʽ���� Person����������
 	public Employee(String n, double s, int year, int month, int day)
 	{
@@ -144,12 +154,30 @@ class Employee extends Person implements Comparable<Employee>, Cloneable
 		return cloned;
 	}
 	
+	public void writeData(PrintWriter out)
+	{
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTime(hireDay);
+		out.println(name + "|" + salary + "|" + calendar.get(Calendar.YEAR) + "|"
+				+ (calendar.get(Calendar.MONTH) + 1) + "|" + calendar.get(Calendar.DAY_OF_MONTH));
+	}
 	
+	public void readData(Scanner in)
+	{
+		String line = in.nextLine();
+		String[] tokens = line.split("\\|");
+		name = tokens[0];
+		salary = Double.parseDouble(tokens[1]);
+		int y = Integer.parseInt(tokens[2]);
+		int m = Integer.parseInt(tokens[3]);
+		int d = Integer.parseInt(tokens[4]);
+		GregorianCalendar calendar = new GregorianCalendar(y, m - 1, d);
+		hireDay = calendar.getTime();
+	}
 }
 
 class Manager extends Employee
 {
-
 	public Manager(String n, double s, int year, int month, int day) {
 		super(n, s, year, month, day);
 		bonus = 0;
